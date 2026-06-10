@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HSC 2026 Rag Day — BKSP Public School &amp; College</title>
+  <meta name="description" content="Register for the HSC Batch 2026 Rag Day celebration at BKSP Public School & College." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ══════════ NAVBAR ══════════ -->
+  <nav class="navbar" id="navbar">
+    <a class="nb-brand" href="#">BKSP Public School &amp; College</a>
+    <ul class="nb-links">
+      <li><a href="#register">Register</a></li>
+      <li><a href="#participants">Participants</a></li>
+    </ul>
+    <a href="#register" class="btn btn-gold nb-cta">Register Now</a>
+    <button class="nb-hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ══════════ HERO ══════════ -->
+  <header class="hero">
+    <div class="hero-bg-orb orb-1"></div>
+    <div class="hero-bg-orb orb-2"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-watermark" aria-hidden="true">2026</div>
+
+    <div class="hero-content">
+      <span class="hero-pill">✦ HSC Batch 2026 · Grand Farewell ✦</span>
+      <h1 class="hero-heading">
+        <em>Rag Day</em>
+      </h1>
+      <p class="hero-sub">
+        Celebrate the end of an extraordinary chapter.<br />
+        <strong>BKSP Public School &amp; College</strong>
+      </p>
+      <div class="hero-actions">
+        <a href="#register" class="btn btn-gold btn-lg">Register Now →</a>
+        <a href="#participants" class="btn btn-ghost btn-lg">View Participants</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </header>
+
+  <!-- ══════════ STATS STRIP ══════════ -->
+  <div class="stats-strip">
+    <div class="container stats-row">
+      <div class="stat">
+        <span class="stat-n" id="totalCount">—</span>
+        <span class="stat-l">Total Registered</span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat">
+        <span class="stat-n" id="secACount">—</span>
+        <span class="stat-l">Section A</span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat">
+        <span class="stat-n" id="secBCount">—</span>
+        <span class="stat-l">Section B</span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat">
+        <span class="stat-n" id="secCCount">—</span>
+        <span class="stat-l">Section C</span>
+      </div>
+      <div class="stat-sep"></div>
+      <div class="stat">
+        <span class="stat-n" id="secDCount">—</span>
+        <span class="stat-l">Section D</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ REGISTRATION ══════════ -->
+  <section id="register" class="section reg-section">
+    <div class="container narrow">
+      <div class="sec-head">
+        <span class="sec-tag">Join the Celebration</span>
+        <h2 class="sec-title">Register for HSC 26 Rag Day</h2>
+        <p class="sec-desc">
+          Secure your spot at BKSP's grandest farewell.
+          Fill in your details below — it only takes a moment.
+        </p>
+      </div>
+
+      <div class="form-card">
+        <form id="regForm" novalidate>
+
+          <div class="fg">
+            <label for="fullName">Full Name <span class="req">*</span></label>
+            <input type="text" id="fullName" name="fullName"
+                   placeholder="e.g. Rafsan Ahmed" autocomplete="name" />
+            <span class="ferr" id="nameErr"></span>
+          </div>
+
+          <div class="fg-row">
+            <div class="fg">
+              <label for="serial">Serial Number <span class="req">*</span></label>
+              <input type="text" id="serial" name="serial" placeholder="e.g. 42" />
+              <span class="ferr" id="serialErr"></span>
+            </div>
+            <div class="fg">
+              <label for="section">Section <span class="req">*</span></label>
+              <div class="sel-wrap">
+                <select id="section" name="section">
+                  <option value="" disabled selected>Select Section</option>
+                  <option value="A">Section A</option>
+                  <option value="B">Section B</option>
+                  <option value="C">Section C</option>
+                  <option value="D">Section D</option>
+                </select>
+                <span class="sel-chevron" aria-hidden="true">&#8964;</span>
+              </div>
+              <span class="ferr" id="sectionErr"></span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn btn-gold btn-block" id="submitBtn">
+            <span id="btnLabel">Complete Registration</span>
+            <span id="btnSpin" class="spin hidden" aria-hidden="true"></span>
+          </button>
+
+        </form>
+        <div id="formMsg" class="form-msg hidden" role="alert"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ PARTICIPANTS ══════════ -->
+  <section id="participants" class="section part-section">
+    <div class="container">
+      <div class="sec-head">
+        <span class="sec-tag">Class of 2026</span>
+        <h2 class="sec-title">Registered Participants</h2>
+        <p class="sec-desc">
+          Students confirmed for Rag Day 2026. Browse by section below.
+        </p>
+      </div>
+
+      <!-- Tabs -->
+      <div class="tabs-wrap" role="tablist" aria-label="Filter by section">
+        <button class="tab active" data-f="All" role="tab" aria-selected="true">
+          All <span class="tab-badge" id="tabAll">0</span>
+        </button>
+        <button class="tab" data-f="A" role="tab" aria-selected="false">
+          Section A <span class="tab-badge" id="tabA">0</span>
+        </button>
+        <button class="tab" data-f="B" role="tab" aria-selected="false">
+          Section B <span class="tab-badge" id="tabB">0</span>
+        </button>
+        <button class="tab" data-f="C" role="tab" aria-selected="false">
+          Section C <span class="tab-badge" id="tabC">0</span>
+        </button>
+        <button class="tab" data-f="D" role="tab" aria-selected="false">
+          Section D <span class="tab-badge" id="tabD">0</span>
+        </button>
+      </div>
+
+      <!-- Participant Grid -->
+      <div id="pGrid" class="p-grid" role="tabpanel">
+        <div class="p-loading">
+          <div class="ring"></div>
+          <p>Loading participants…</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ FOOTER ══════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-logo">BKSP</div>
+      <p class="footer-school">BKSP Public School &amp; College</p>
+      <p class="footer-event">HSC Batch 2026 &nbsp;·&nbsp; Rag Day Celebration</p>
+      <p class="footer-copy">© 2026 All Rights Reserved</p>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
