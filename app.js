@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ──────────────── NAVBAR scroll effect ──────────────── */
 function initNavbar() {
   const nb = document.getElementById("navbar");
+  if (!nb) return;
   window.addEventListener("scroll", () => {
     nb.classList.toggle("scrolled", window.scrollY > 40);
   }, { passive: true });
@@ -31,6 +32,7 @@ function initNavbar() {
 /* ──────────────── MOBILE MENU ──────────────── */
 function initMobileMenu() {
   const btn = document.getElementById("hamburger");
+  if (!btn) return;
   let menuEl = null;
 
   btn.addEventListener("click", () => {
