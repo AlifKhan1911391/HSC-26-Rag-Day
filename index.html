@@ -7,55 +7,762 @@
   <meta name="description" content="Register for the HSC Batch 2026 Rag Day celebration at BKSP Public School & College." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ════════════════════════════════════════════════
+       HSC 2026 RAG DAY  ·  BKSP Public School & College
+       Palette : Deep navy · Warm gold · Off-white
+       Type    : Cormorant Garamond (display) · Inter (body)
+    ════════════════════════════════════════════════ */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+
+    :root {
+      /* Background layers */
+      --bg:          #070D1C;
+      --bg-2:        #0B1527;
+      --bg-card:     #0F1D30;
+      --bg-elevated: #162639;
+
+      /* Gold palette */
+      --gold:        #C4900A;
+      --gold-hi:     #DCA718;
+      --gold-pale:   rgba(196,144,10,0.12);
+      --gold-border: rgba(196,144,10,0.32);
+
+      /* Text */
+      --text:        #F2EDE8;
+      --text-soft:   #9AAFC4;
+      --text-muted:  #4C6278;
+
+      /* Borders */
+      --border:      rgba(255,255,255,0.07);
+      --border-2:    rgba(255,255,255,0.12);
+
+      /* Status */
+      --success-bg:  rgba(52,211,153,0.10);
+      --success-bd:  rgba(52,211,153,0.28);
+      --success-tx:  #34d399;
+      --error-bg:    rgba(248,113,113,0.10);
+      --error-bd:    rgba(248,113,113,0.28);
+      --error-tx:    #f87171;
+
+      /* Shape & motion */
+      --r:      10px;
+      --r-lg:   18px;
+      --r-xl:   24px;
+      --ease:   cubic-bezier(0.4, 0, 0.2, 1);
+      --t:      0.22s;
+      --shadow: 0 8px 40px rgba(0,0,0,0.5);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── Utilities ─────────────────────────── */
+    .container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+    .narrow    { max-width: 620px; }
+    .hidden    { display: none !important; }
+
+    /* ── Scrollbar ─────────────────────────── */
+    ::-webkit-scrollbar              { width: 5px; }
+    ::-webkit-scrollbar-track        { background: var(--bg); }
+    ::-webkit-scrollbar-thumb        { background: var(--bg-elevated); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover  { background: var(--gold); }
+
+    /* ═══════════════════════════════════════
+       BUTTONS
+    ═══════════════════════════════════════ */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem; font-weight: 600;
+      text-decoration: none; border: none; cursor: pointer;
+      border-radius: 50px; padding: 11px 26px;
+      transition:
+        background var(--t) var(--ease),
+        transform  var(--t) var(--ease),
+        box-shadow var(--t) var(--ease),
+        color      var(--t) var(--ease);
+      white-space: nowrap;
+    }
+    .btn-lg    { font-size: 0.95rem; padding: 14px 36px; }
+    .btn-block { width: 100%; border-radius: var(--r); padding: 16px; font-size: 1rem; }
+
+    .btn-gold { background: var(--gold); color: #060C18; }
+    .btn-gold:hover {
+      background: var(--gold-hi);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(196,144,10,0.38);
+    }
+    .btn-gold:active { transform: translateY(0); }
+
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border-2);
+      color: var(--text-soft);
+    }
+    .btn-ghost:hover {
+      border-color: var(--gold-border);
+      color: var(--gold-hi);
+      background: var(--gold-pale);
+    }
+
+    /* ═══════════════════════════════════════
+       NAVBAR
+    ═══════════════════════════════════════ */
+    .navbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; align-items: center; gap: 28px;
+      padding: 0 44px; height: 68px;
+      background: rgba(7,13,28,0.80);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: background var(--t), box-shadow var(--t);
+    }
+    .navbar.scrolled {
+      background: rgba(7,13,28,0.97);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.45);
+    }
+
+    /* Brand: logo image + name stack */
+    .nb-brand {
+      display: flex; align-items: center; gap: 11px;
+      text-decoration: none; flex-shrink: 0;
+    }
+    .nb-logo {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      object-fit: contain;
+      border: 1.5px solid var(--gold-border);
+      background: var(--bg-card);
+      padding: 4px;
+    }
+    .nb-brand-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--text); letter-spacing: 0.01em; line-height: 1.15;
+    }
+    .nb-brand-sub {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.64rem; font-weight: 500;
+      color: var(--text-muted); letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .nb-links {
+      display: flex; gap: 28px; list-style: none; margin-left: auto;
+    }
+    .nb-links a {
+      font-size: 0.85rem; color: var(--text-soft); text-decoration: none;
+      transition: color var(--t);
+    }
+    .nb-links a:hover { color: var(--text); }
+    .nb-cta { margin-left: 4px; }
+
+    /* Hamburger */
+    .nb-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer;
+      padding: 6px; margin-left: auto;
+    }
+    .nb-hamburger span {
+      display: block; width: 22px; height: 2px;
+      background: var(--text); border-radius: 2px;
+      transition: transform var(--t), opacity var(--t);
+    }
+
+    /* ═══════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════ */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center;
+      padding: 130px 28px 90px;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    /* Subtle diagonal stripe texture — no blobs, no gimmicks */
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0; pointer-events: none;
+      background-image: repeating-linear-gradient(
+        -55deg,
+        transparent 0px,
+        transparent 40px,
+        rgba(196,144,10,0.035) 40px,
+        rgba(196,144,10,0.035) 41px
+      );
+    }
+
+    /* Signature top-bar: a gold gradient line spanning the full width */
+    .hero::after {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        var(--gold) 35%,
+        var(--gold-hi) 50%,
+        var(--gold) 65%,
+        transparent 100%
+      );
+    }
+
+    .hero-content {
+      position: relative; z-index: 1;
+      max-width: 760px;
+      display: flex; flex-direction: column;
+      align-items: center;
+      animation: heroFadeIn 0.9s var(--ease) both;
+    }
+    @keyframes heroFadeIn {
+      from { opacity: 0; transform: translateY(28px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── School logo medallion (signature element) ── */
+    .hero-emblem {
+      position: relative;
+      width: 122px; height: 122px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-bottom: 32px;
+    }
+    /* Outer ring: glowing gold */
+    .hero-emblem::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      border: 1px solid var(--gold-border);
+      box-shadow: 0 0 0 1px rgba(196,144,10,0.10);
+      animation: emblemPulse 3.5s ease-in-out infinite;
+    }
+    @keyframes emblemPulse {
+      0%, 100% { box-shadow: 0 0 0 1px rgba(196,144,10,0.10), 0 0 24px rgba(196,144,10,0.12); }
+      50%       { box-shadow: 0 0 0 1px rgba(196,144,10,0.22), 0 0 40px rgba(196,144,10,0.22); }
+    }
+    .hero-emblem-inner {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      border: 2px solid var(--gold-border);
+      background: var(--bg-card);
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(196,144,10,0.15), 0 10px 36px rgba(0,0,0,0.55);
+    }
+    .hero-emblem-inner img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      padding: 12px;
+    }
+
+    /* ── Pill badge ── */
+    .hero-pill {
+      display: inline-block;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em;
+      text-transform: uppercase; color: var(--gold-hi);
+      border: 1px solid var(--gold-border);
+      padding: 5px 18px; border-radius: 50px;
+      background: var(--gold-pale);
+      margin-bottom: 20px;
+    }
+
+    /* ── Main title ── */
+    .hero-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(4.5rem, 11vw, 9rem);
+      font-weight: 700; line-height: 0.92;
+      font-style: italic;
+      color: var(--text);
+      letter-spacing: -0.015em;
+      margin-bottom: 0;
+    }
+
+    /* ── Divider with school name ── */
+    .hero-divider {
+      display: flex; align-items: center; gap: 18px;
+      width: 100%; max-width: 520px;
+      margin: 22px 0 18px;
+    }
+    .hero-divider-line {
+      flex: 1; height: 1px;
+    }
+    .hero-divider-line:first-child {
+      background: linear-gradient(to right, transparent, var(--gold-border));
+    }
+    .hero-divider-line:last-child {
+      background: linear-gradient(to left, transparent, var(--gold-border));
+    }
+    .hero-divider-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--gold); white-space: nowrap;
+    }
+
+    /* ── Subtitle ── */
+    .hero-sub {
+      font-size: clamp(0.94rem, 1.8vw, 1.08rem);
+      color: var(--text-soft); font-weight: 400;
+      margin-bottom: 44px; line-height: 1.72;
+      max-width: 420px;
+    }
+
+    /* ── CTA row ── */
+    .hero-actions {
+      display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
+    }
+
+    /* ── Scroll hint ── */
+    .hero-scroll {
+      position: absolute; bottom: 32px; left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .hero-scroll span {
+      font-size: 0.6rem; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .hero-scroll-line {
+      width: 1px; height: 36px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2.2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%   { opacity: 1; transform: scaleY(1);   transform-origin: top; }
+      100% { opacity: 0; transform: scaleY(0.5); transform-origin: bottom; }
+    }
+
+    /* ═══════════════════════════════════════
+       STATS STRIP
+    ═══════════════════════════════════════ */
+    .stats-strip {
+      background: var(--bg-2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 42px 0;
+    }
+    .stats-row {
+      display: flex; align-items: center;
+      justify-content: space-around; flex-wrap: wrap; gap: 20px;
+    }
+    .stat { text-align: center; }
+    .stat-n {
+      display: block;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem; font-weight: 700;
+      color: var(--gold-hi); line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-l {
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+    .stat-sep {
+      width: 1px; height: 50px;
+      background: var(--border-2);
+    }
+
+    /* ═══════════════════════════════════════
+       SECTION LAYOUT
+    ═══════════════════════════════════════ */
+    .section       { padding: 104px 0; }
+    .reg-section   { background: var(--bg); }
+    .part-section  { background: var(--bg-2); }
+
+    .sec-head { text-align: center; margin-bottom: 56px; }
+    .sec-tag {
+      display: inline-block;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 12px;
+    }
+    .sec-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.9rem, 4vw, 2.9rem);
+      font-weight: 700; color: var(--text);
+      margin-bottom: 14px; line-height: 1.15;
+    }
+    .sec-desc {
+      font-size: 0.96rem; color: var(--text-soft);
+      max-width: 430px; margin: 0 auto; line-height: 1.72;
+    }
+
+    /* ═══════════════════════════════════════
+       REGISTRATION FORM
+    ═══════════════════════════════════════ */
+    .form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--gold-border);
+      border-radius: var(--r-xl);
+      padding: 48px 52px;
+      box-shadow: var(--shadow);
+    }
+
+    .fg            { margin-bottom: 24px; }
+    .fg-row        { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .fg-row .fg    { margin-bottom: 24px; }
+
+    label {
+      display: block;
+      font-size: 0.82rem; font-weight: 600; color: var(--text);
+      margin-bottom: 8px; letter-spacing: 0.01em;
+    }
+    .req { color: var(--gold); }
+
+    input[type="text"],
+    select {
+      width: 100%;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border-2);
+      border-radius: var(--r);
+      padding: 13px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.93rem; color: var(--text);
+      outline: none;
+      -webkit-appearance: none; appearance: none;
+      transition: border-color var(--t), box-shadow var(--t);
+    }
+    input::placeholder { color: var(--text-muted); }
+    input:focus,
+    select:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(196,144,10,0.15);
+    }
+    input.invalid { border-color: var(--error-tx); }
+
+    /* Select dropdown */
+    .sel-wrap { position: relative; }
+    .sel-wrap select { cursor: pointer; padding-right: 42px; }
+    .sel-wrap select option { background: var(--bg-card); color: var(--text); }
+    .sel-chevron {
+      position: absolute; right: 14px; top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.15rem; color: var(--text-muted);
+      pointer-events: none; line-height: 1;
+    }
+
+    /* Field errors */
+    .ferr {
+      display: block;
+      font-size: 0.74rem; color: var(--error-tx);
+      margin-top: 5px; min-height: 18px;
+    }
+
+    /* Spinner */
+    .spin {
+      display: inline-block;
+      width: 17px; height: 17px;
+      border: 2px solid rgba(0,0,0,0.22);
+      border-top-color: #060C18;
+      border-radius: 50%;
+      animation: spinAnim 0.55s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes spinAnim { to { transform: rotate(360deg); } }
+
+    /* Form status message */
+    .form-msg {
+      margin-top: 18px; padding: 14px 18px;
+      border-radius: var(--r);
+      font-size: 0.87rem; font-weight: 500;
+      text-align: center; line-height: 1.5;
+    }
+    .form-msg.success {
+      background: var(--success-bg);
+      border: 1px solid var(--success-bd);
+      color: var(--success-tx);
+    }
+    .form-msg.error {
+      background: var(--error-bg);
+      border: 1px solid var(--error-bd);
+      color: var(--error-tx);
+    }
+
+    /* ═══════════════════════════════════════
+       SECTION FILTER TABS
+    ═══════════════════════════════════════ */
+    .tabs-wrap {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 8px;
+      margin-bottom: 40px;
+    }
+    .tab {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.84rem; font-weight: 500;
+      padding: 9px 20px; border-radius: 50px;
+      cursor: pointer;
+      transition: background var(--t), color var(--t), border-color var(--t);
+    }
+    .tab:hover { color: var(--text); border-color: var(--border-2); }
+    .tab.active {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: #060C18; font-weight: 700;
+    }
+    .tab.active .tab-badge {
+      background: rgba(0,0,0,0.20);
+      color: #060C18;
+    }
+    .tab-badge {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 22px; height: 22px;
+      background: var(--bg-elevated);
+      border-radius: 50px; padding: 0 6px;
+      font-size: 0.7rem; font-weight: 700;
+      color: var(--text-soft);
+    }
+
+    /* ═══════════════════════════════════════
+       PARTICIPANT GRID
+    ═══════════════════════════════════════ */
+    .p-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 14px;
+    }
+
+    .p-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--r-lg);
+      padding: 18px 20px;
+      display: flex; align-items: center; gap: 14px;
+      transition: border-color var(--t), transform var(--t), box-shadow var(--t);
+      animation: fadeUp 0.35s var(--ease) both;
+    }
+    .p-card:hover {
+      border-color: var(--gold-border);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(0,0,0,0.32);
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .p-avatar {
+      flex-shrink: 0;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--gold-pale);
+      border: 2px solid var(--gold-border);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--gold-hi);
+    }
+    .p-info  { min-width: 0; flex: 1; }
+    .p-name  {
+      font-size: 0.9rem; font-weight: 600; color: var(--text);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      margin-bottom: 3px;
+    }
+    .p-meta  { font-size: 0.74rem; color: var(--text-muted); }
+    .p-tag   {
+      display: inline-block;
+      margin-top: 5px; padding: 2px 9px;
+      background: var(--gold-pale);
+      border: 1px solid var(--gold-border);
+      border-radius: 50px;
+      font-size: 0.68rem; font-weight: 700;
+      color: var(--gold-hi); letter-spacing: 0.04em;
+    }
+
+    /* Loading & empty states */
+    .p-loading, .p-empty {
+      grid-column: 1 / -1;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 16px; padding: 80px 20px;
+      color: var(--text-muted); text-align: center;
+    }
+    .ring {
+      width: 42px; height: 42px;
+      border: 3px solid var(--border-2);
+      border-top-color: var(--gold);
+      border-radius: 50%;
+      animation: spinAnim 0.8s linear infinite;
+    }
+    .p-empty-icon { font-size: 2.4rem; margin-bottom: 4px; }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    .footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 60px 0 44px;
+    }
+    .footer-inner { text-align: center; }
+
+    .footer-brand {
+      display: inline-flex; align-items: center; gap: 14px;
+      margin-bottom: 18px;
+    }
+    .footer-brand-img {
+      width: 52px; height: 52px;
+      border-radius: 50%;
+      object-fit: contain;
+      border: 1.5px solid var(--gold-border);
+      background: var(--bg-card);
+      padding: 5px;
+    }
+    .footer-brand-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.7rem; font-weight: 700; font-style: italic;
+      color: var(--gold-hi); letter-spacing: -0.01em;
+    }
+
+    .footer-school {
+      font-size: 0.93rem; font-weight: 600; color: var(--text);
+      margin-bottom: 6px;
+    }
+    .footer-event { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 28px; }
+    .footer-copy  { font-size: 0.72rem; color: var(--text-muted); }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .navbar            { padding: 0 20px; }
+      .nb-links, .nb-cta { display: none; }
+      .nb-hamburger      { display: flex; }
+      .nb-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+      .nb-hamburger.open span:nth-child(2) { opacity: 0; }
+      .nb-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+      /* Mobile nav dropdown */
+      .mobile-menu {
+        position: fixed; top: 68px; left: 0; right: 0; z-index: 199;
+        background: var(--bg-2);
+        border-bottom: 1px solid var(--border);
+        padding: 24px 20px;
+        display: flex; flex-direction: column; gap: 16px;
+      }
+      .mobile-menu a {
+        color: var(--text); text-decoration: none;
+        font-size: 1rem; font-weight: 500;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .form-card { padding: 30px 24px; }
+      .fg-row    { grid-template-columns: 1fr; }
+      .stat-sep  { display: none; }
+      .stats-row { gap: 20px; }
+      .section   { padding: 76px 0; }
+      .hero-emblem { width: 96px; height: 96px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-actions  { flex-direction: column; align-items: center; }
+      .btn-lg        { width: 100%; max-width: 280px; }
+      .tabs-wrap     { gap: 6px; }
+      .tab           { font-size: 0.78rem; padding: 8px 14px; }
+      .nb-brand-name { font-size: 0.88rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <!-- ══════════ NAVBAR ══════════ -->
+  <!-- ══════════════════ NAVBAR ══════════════════ -->
   <nav class="navbar" id="navbar">
-    <a class="nb-brand" href="#">BKSP Public School &amp; College</a>
+
+    <a class="nb-brand" href="#">
+      <img src="bksp-logo.jpg" alt="BKSP Logo" class="nb-logo" />
+      <span class="nb-brand-name">
+        BKSP
+        <span class="nb-brand-sub">Public School &amp; College</span>
+      </span>
+    </a>
+
     <ul class="nb-links">
       <li><a href="#register">Register</a></li>
       <li><a href="#participants">Participants</a></li>
     </ul>
     <a href="#register" class="btn btn-gold nb-cta">Register Now</a>
-    <button class="nb-hamburger" id="hamburger" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
+
+
+
   </nav>
 
-  <!-- ══════════ HERO ══════════ -->
+
+  <!-- ══════════════════ HERO ══════════════════ -->
   <header class="hero">
-    <div class="hero-bg-orb orb-1"></div>
-    <div class="hero-bg-orb orb-2"></div>
-    <div class="hero-grid"></div>
-    <div class="hero-watermark" aria-hidden="true">2026</div>
 
     <div class="hero-content">
-      <span class="hero-pill">✦ HSC Batch 2026 · Grand Farewell ✦</span>
-      <h1 class="hero-heading">
-        <em>Rag Day</em>
-      </h1>
+
+      <!-- School logo medallion — the visual anchor of the page -->
+      <div class="hero-emblem">
+        <div class="hero-emblem-inner">
+          <img src="bksp-logo.jpg" alt="BKSP Public School &amp; College" />
+        </div>
+      </div>
+
+      <span class="hero-pill">✦ HSC Batch 2026 &nbsp;·&nbsp; Grand Farewell ✦</span>
+
+      <h1 class="hero-heading">Rag Day</h1>
+
+      <div class="hero-divider">
+        <div class="hero-divider-line"></div>
+        <span class="hero-divider-label">BKSP Public School &amp; College</span>
+        <div class="hero-divider-line"></div>
+      </div>
+
       <p class="hero-sub">
         Celebrate the end of an extraordinary chapter.<br />
-        <strong>BKSP Public School &amp; College</strong>
+        Class of 2026 — The Final Act.
       </p>
+
       <div class="hero-actions">
-        <a href="#register" class="btn btn-gold btn-lg">Register Now →</a>
+        <a href="#register"    class="btn btn-gold  btn-lg">Register Now →</a>
         <a href="#participants" class="btn btn-ghost btn-lg">View Participants</a>
       </div>
+
     </div>
 
     <div class="hero-scroll" aria-hidden="true">
       <span>Scroll</span>
       <div class="hero-scroll-line"></div>
     </div>
+
   </header>
 
-  <!-- ══════════ STATS STRIP ══════════ -->
+
+  <!-- ══════════════════ STATS STRIP ══════════════════ -->
   <div class="stats-strip">
     <div class="container stats-row">
+
       <div class="stat">
         <span class="stat-n" id="totalCount">—</span>
         <span class="stat-l">Total Registered</span>
@@ -80,12 +787,15 @@
         <span class="stat-n" id="secDCount">—</span>
         <span class="stat-l">Section D</span>
       </div>
+
     </div>
   </div>
 
-  <!-- ══════════ REGISTRATION ══════════ -->
+
+  <!-- ══════════════════ REGISTRATION ══════════════════ -->
   <section id="register" class="section reg-section">
     <div class="container narrow">
+
       <div class="sec-head">
         <span class="sec-tag">Join the Celebration</span>
         <h2 class="sec-title">Register for HSC 26 Rag Day</h2>
@@ -135,12 +845,15 @@
         </form>
         <div id="formMsg" class="form-msg hidden" role="alert"></div>
       </div>
+
     </div>
   </section>
 
-  <!-- ══════════ PARTICIPANTS ══════════ -->
+
+  <!-- ══════════════════ PARTICIPANTS ══════════════════ -->
   <section id="participants" class="section part-section">
     <div class="container">
+
       <div class="sec-head">
         <span class="sec-tag">Class of 2026</span>
         <h2 class="sec-title">Registered Participants</h2>
@@ -149,7 +862,7 @@
         </p>
       </div>
 
-      <!-- Tabs -->
+      <!-- Section filter tabs -->
       <div class="tabs-wrap" role="tablist" aria-label="Filter by section">
         <button class="tab active" data-f="All" role="tab" aria-selected="true">
           All <span class="tab-badge" id="tabAll">0</span>
@@ -168,23 +881,31 @@
         </button>
       </div>
 
-      <!-- Participant Grid -->
+      <!-- Participant grid -->
       <div id="pGrid" class="p-grid" role="tabpanel">
         <div class="p-loading">
           <div class="ring"></div>
           <p>Loading participants…</p>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- ══════════ FOOTER ══════════ -->
+
+  <!-- ══════════════════ FOOTER ══════════════════ -->
   <footer class="footer">
     <div class="container footer-inner">
-      <div class="footer-logo">BKSP</div>
+
+      <div class="footer-brand">
+        <img src="bksp-logo.jpg" alt="BKSP Logo" class="footer-brand-img" />
+        <span class="footer-brand-text">BKSP</span>
+      </div>
+
       <p class="footer-school">BKSP Public School &amp; College</p>
       <p class="footer-event">HSC Batch 2026 &nbsp;·&nbsp; Rag Day Celebration</p>
       <p class="footer-copy">© 2026 All Rights Reserved</p>
+
     </div>
   </footer>
 
