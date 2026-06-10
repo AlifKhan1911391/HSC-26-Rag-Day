@@ -7,863 +7,846 @@
   <meta name="description" content="Register for the HSC Batch 2026 Rag Day celebration at BKSP Public School & College." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
 
   <style>
-    /* ════════════════════════════════════════════════
-       HSC 2026 RAG DAY  ·  BKSP Public School & College
-       Palette : Deep navy · Warm gold · Off-white
-       Type    : Cormorant Garamond (display) · Inter (body)
-    ════════════════════════════════════════════════ */
+    /* ═══════════════════════════════════════════
+       TOKENS
+    ═══════════════════════════════════════════ */
+    :root {
+      --black:      #080808;
+      --ink:        #0e0e12;
+      --deep:       #12121a;
+      --surface:    #1a1a26;
+      --raised:     #22223a;
+      --border:     rgba(255,255,255,0.07);
+      --border-hi:  rgba(255,255,255,0.13);
 
+      --crimson:    #c0392b;
+      --crimson-lo: #8b1a12;
+      --crimson-hi: #e8453a;
+      --gold:       #c9922a;
+      --gold-lo:    #9a6e1a;
+      --gold-hi:    #e8b84b;
+      --amber:      #f0c56a;
+
+      --white:      #f5f4f0;
+      --muted:      #9896a4;
+      --faint:      #5a5870;
+
+      --ff-display: 'Cormorant Garamond', Georgia, serif;
+      --ff-body:    'DM Sans', system-ui, sans-serif;
+      --ff-mono:    'Space Mono', monospace;
+
+      --radius:     6px;
+      --radius-lg:  12px;
+      --max:        1140px;
+    }
+
+    /* ═══════════════════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════════════════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; font-size: 16px; }
 
-    :root {
-      /* Background layers */
-      --bg:          #070D1C;
-      --bg-2:        #0B1527;
-      --bg-card:     #0F1D30;
-      --bg-elevated: #162639;
-
-      /* Gold palette */
-      --gold:        #C4900A;
-      --gold-hi:     #DCA718;
-      --gold-pale:   rgba(196,144,10,0.12);
-      --gold-border: rgba(196,144,10,0.32);
-
-      /* Text */
-      --text:        #F2EDE8;
-      --text-soft:   #9AAFC4;
-      --text-muted:  #4C6278;
-
-      /* Borders */
-      --border:      rgba(255,255,255,0.07);
-      --border-2:    rgba(255,255,255,0.12);
-
-      /* Status */
-      --success-bg:  rgba(52,211,153,0.10);
-      --success-bd:  rgba(52,211,153,0.28);
-      --success-tx:  #34d399;
-      --error-bg:    rgba(248,113,113,0.10);
-      --error-bd:    rgba(248,113,113,0.28);
-      --error-tx:    #f87171;
-
-      /* Shape & motion */
-      --r:      10px;
-      --r-lg:   18px;
-      --r-xl:   24px;
-      --ease:   cubic-bezier(0.4, 0, 0.2, 1);
-      --t:      0.22s;
-      --shadow: 0 8px 40px rgba(0,0,0,0.5);
-    }
-
     body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--text);
+      background: var(--ink);
+      color: var(--white);
+      font-family: var(--ff-body);
+      font-weight: 400;
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
-      overflow-x: hidden;
     }
 
-    /* ── Utilities ─────────────────────────── */
-    .container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
-    .narrow    { max-width: 620px; }
-    .hidden    { display: none !important; }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; font: inherit; }
+    ul { list-style: none; }
 
-    /* ── Scrollbar ─────────────────────────── */
-    ::-webkit-scrollbar              { width: 5px; }
-    ::-webkit-scrollbar-track        { background: var(--bg); }
-    ::-webkit-scrollbar-thumb        { background: var(--bg-elevated); border-radius: 3px; }
-    ::-webkit-scrollbar-thumb:hover  { background: var(--gold); }
+    /* ═══════════════════════════════════════════
+       SCROLLBAR
+    ═══════════════════════════════════════════ */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--ink); }
+    ::-webkit-scrollbar-thumb { background: var(--raised); border-radius: 3px; }
 
-    /* ═══════════════════════════════════════
-       BUTTONS
-    ═══════════════════════════════════════ */
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.875rem; font-weight: 600;
-      text-decoration: none; border: none; cursor: pointer;
-      border-radius: 50px; padding: 11px 26px;
-      transition:
-        background var(--t) var(--ease),
-        transform  var(--t) var(--ease),
-        box-shadow var(--t) var(--ease),
-        color      var(--t) var(--ease);
-      white-space: nowrap;
-    }
-    .btn-lg    { font-size: 0.95rem; padding: 14px 36px; }
-    .btn-block { width: 100%; border-radius: var(--r); padding: 16px; font-size: 1rem; }
-
-    .btn-gold { background: var(--gold); color: #060C18; }
-    .btn-gold:hover {
-      background: var(--gold-hi);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 28px rgba(196,144,10,0.38);
-    }
-    .btn-gold:active { transform: translateY(0); }
-
-    .btn-ghost {
-      background: transparent;
-      border: 1px solid var(--border-2);
-      color: var(--text-soft);
-    }
-    .btn-ghost:hover {
-      border-color: var(--gold-border);
-      color: var(--gold-hi);
-      background: var(--gold-pale);
+    /* ═══════════════════════════════════════════
+       LAYOUT HELPERS
+    ═══════════════════════════════════════════ */
+    .container {
+      width: 100%;
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 0 24px;
     }
 
-    /* ═══════════════════════════════════════
-       NAVBAR
-    ═══════════════════════════════════════ */
-    .navbar {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-      display: flex; align-items: center; gap: 28px;
-      padding: 0 44px; height: 68px;
-      background: rgba(7,13,28,0.80);
+    /* ═══════════════════════════════════════════
+       MOBILE MENU (JS-injected)
+    ═══════════════════════════════════════════ */
+    .mobile-menu {
+      position: fixed;
+      top: 64px; left: 0; right: 0;
+      z-index: 99;
+      background: rgba(8,8,8,0.97);
       backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
       border-bottom: 1px solid var(--border);
-      transition: background var(--t), box-shadow var(--t);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      padding: 16px 24px 24px;
     }
-    .navbar.scrolled {
-      background: rgba(7,13,28,0.97);
-      box-shadow: 0 2px 24px rgba(0,0,0,0.45);
+    .mobile-menu a {
+      padding: 14px 0;
+      font-size: 1rem;
+      font-weight: 500;
+      border-bottom: 1px solid var(--border);
+      color: var(--muted);
+      transition: color 0.2s;
     }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu a:hover { color: var(--white); }
 
-    /* Brand: logo image + name stack */
-    .nb-brand {
-      display: flex; align-items: center; gap: 11px;
-      text-decoration: none; flex-shrink: 0;
-    }
-    .nb-logo {
-      width: 38px; height: 38px;
-      border-radius: 50%;
-      object-fit: contain;
-      border: 1.5px solid var(--gold-border);
-      background: var(--bg-card);
-      padding: 4px;
-    }
-    .nb-brand-name {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1rem; font-weight: 700;
-      color: var(--text); letter-spacing: 0.01em; line-height: 1.15;
-    }
-    .nb-brand-sub {
-      display: block;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.64rem; font-weight: 500;
-      color: var(--text-muted); letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .nb-links {
-      display: flex; gap: 28px; list-style: none; margin-left: auto;
-    }
-    .nb-links a {
-      font-size: 0.85rem; color: var(--text-soft); text-decoration: none;
-      transition: color var(--t);
-    }
-    .nb-links a:hover { color: var(--text); }
-    .nb-cta { margin-left: 4px; }
-
-    /* Hamburger */
-    .nb-hamburger {
-      display: none; flex-direction: column; gap: 5px;
-      background: none; border: none; cursor: pointer;
-      padding: 6px; margin-left: auto;
-    }
-    .nb-hamburger span {
-      display: block; width: 22px; height: 2px;
-      background: var(--text); border-radius: 2px;
-      transition: transform var(--t), opacity var(--t);
-    }
-
-    /* ═══════════════════════════════════════
-       HERO
-    ═══════════════════════════════════════ */
+    /* ═══════════════════════════════════════════
+       HERO — SPLIT LAYOUT
+    ═══════════════════════════════════════════ */
     .hero {
-      position: relative;
       min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      text-align: center;
-      padding: 130px 28px 90px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--black);
+      position: relative;
       overflow: hidden;
-      background: var(--bg);
     }
 
-    /* Subtle diagonal stripe texture — no blobs, no gimmicks */
-    .hero::before {
-      content: '';
-      position: absolute; inset: 0; pointer-events: none;
-      background-image: repeating-linear-gradient(
-        -55deg,
-        transparent 0px,
-        transparent 40px,
-        rgba(196,144,10,0.035) 40px,
-        rgba(196,144,10,0.035) 41px
-      );
-    }
-
-    /* Signature top-bar: a gold gradient line spanning the full width */
     .hero::after {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(
-        90deg,
-        transparent 0%,
-        var(--gold) 35%,
-        var(--gold-hi) 50%,
-        var(--gold) 65%,
-        transparent 100%
-      );
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      width: 1px;
+      background: linear-gradient(to bottom, transparent, var(--crimson) 30%, var(--gold) 70%, transparent);
+      opacity: 0.35;
     }
 
-    .hero-content {
-      position: relative; z-index: 1;
-      max-width: 760px;
-      display: flex; flex-direction: column;
+    /* Left panel — Logo */
+    .hero-left {
+      background: var(--black);
+      display: flex;
       align-items: center;
-      animation: heroFadeIn 0.9s var(--ease) both;
-    }
-    @keyframes heroFadeIn {
-      from { opacity: 0; transform: translateY(28px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ── School logo medallion (signature element) ── */
-    .hero-emblem {
+      justify-content: center;
+      padding: 80px 60px 80px 40px;
       position: relative;
-      width: 122px; height: 122px;
-      border-radius: 50%;
-      flex-shrink: 0;
-      margin-bottom: 32px;
     }
-    /* Outer ring: glowing gold */
-    .hero-emblem::before {
+    .hero-left::before {
       content: '';
       position: absolute;
-      inset: -8px;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(192,57,43,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-logo-wrap {
+      position: relative;
+      width: min(380px, 90%);
+    }
+    .hero-logo-wrap::before {
+      content: '';
+      position: absolute;
+      inset: -32px;
       border-radius: 50%;
-      border: 1px solid var(--gold-border);
-      box-shadow: 0 0 0 1px rgba(196,144,10,0.10);
-      animation: emblemPulse 3.5s ease-in-out infinite;
+      background: radial-gradient(ellipse at center, rgba(201,146,42,0.07) 0%, transparent 70%);
+      animation: pulse-glow 4s ease-in-out infinite;
     }
-    @keyframes emblemPulse {
-      0%, 100% { box-shadow: 0 0 0 1px rgba(196,144,10,0.10), 0 0 24px rgba(196,144,10,0.12); }
-      50%       { box-shadow: 0 0 0 1px rgba(196,144,10,0.22), 0 0 40px rgba(196,144,10,0.22); }
-    }
-    .hero-emblem-inner {
-      width: 100%; height: 100%;
-      border-radius: 50%;
-      border: 2px solid var(--gold-border);
-      background: var(--bg-card);
-      overflow: hidden;
-      box-shadow: 0 0 40px rgba(196,144,10,0.15), 0 10px 36px rgba(0,0,0,0.55);
-    }
-    .hero-emblem-inner img {
-      width: 100%; height: 100%;
-      object-fit: contain;
-      padding: 12px;
+    @keyframes pulse-glow {
+      0%, 100% { opacity: 0.5; transform: scale(0.95); }
+      50%       { opacity: 1;   transform: scale(1.05); }
     }
 
-    /* ── Pill badge ── */
-    .hero-pill {
-      display: inline-block;
-      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.16em;
-      text-transform: uppercase; color: var(--gold-hi);
-      border: 1px solid var(--gold-border);
-      padding: 5px 18px; border-radius: 50px;
-      background: var(--gold-pale);
-      margin-bottom: 20px;
-    }
-
-    /* ── Main title ── */
-    .hero-heading {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(4.5rem, 11vw, 9rem);
-      font-weight: 700; line-height: 0.92;
-      font-style: italic;
-      color: var(--text);
-      letter-spacing: -0.015em;
-      margin-bottom: 0;
-    }
-
-    /* ── Divider with school name ── */
-    .hero-divider {
-      display: flex; align-items: center; gap: 18px;
-      width: 100%; max-width: 520px;
-      margin: 22px 0 18px;
-    }
-    .hero-divider-line {
-      flex: 1; height: 1px;
-    }
-    .hero-divider-line:first-child {
-      background: linear-gradient(to right, transparent, var(--gold-border));
-    }
-    .hero-divider-line:last-child {
-      background: linear-gradient(to left, transparent, var(--gold-border));
-    }
-    .hero-divider-label {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.65rem; font-weight: 700;
-      letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--gold); white-space: nowrap;
-    }
-
-    /* ── Subtitle ── */
-    .hero-sub {
-      font-size: clamp(0.94rem, 1.8vw, 1.08rem);
-      color: var(--text-soft); font-weight: 400;
-      margin-bottom: 44px; line-height: 1.72;
-      max-width: 420px;
-    }
-
-    /* ── CTA row ── */
-    .hero-actions {
-      display: flex; gap: 14px; flex-wrap: wrap; justify-content: center;
-    }
-
-    /* ── Scroll hint ── */
-    .hero-scroll {
-      position: absolute; bottom: 32px; left: 50%;
-      transform: translateX(-50%);
+    .hero-logo-img {
+      width: 100%;
+      height: auto;
+      position: relative;
       z-index: 1;
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-    }
-    .hero-scroll span {
-      font-size: 0.6rem; letter-spacing: 0.2em;
-      text-transform: uppercase; color: var(--text-muted);
-    }
-    .hero-scroll-line {
-      width: 1px; height: 36px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
-      animation: scrollPulse 2.2s ease-in-out infinite;
-    }
-    @keyframes scrollPulse {
-      0%   { opacity: 1; transform: scaleY(1);   transform-origin: top; }
-      100% { opacity: 0; transform: scaleY(0.5); transform-origin: bottom; }
+      filter: drop-shadow(0 0 48px rgba(192,57,43,0.22)) drop-shadow(0 0 80px rgba(201,146,42,0.12));
     }
 
-    /* ═══════════════════════════════════════
-       STATS STRIP
-    ═══════════════════════════════════════ */
-    .stats-strip {
-      background: var(--bg-2);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 42px 0;
+    /* Right panel — Copy */
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 56px 80px 72px;
+      position: relative;
     }
-    .stats-row {
-      display: flex; align-items: center;
-      justify-content: space-around; flex-wrap: wrap; gap: 20px;
+    .hero-right::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 60%;
+      height: 100%;
+      background: radial-gradient(ellipse at 80% 40%, rgba(201,146,42,0.04) 0%, transparent 70%);
+      pointer-events: none;
     }
-    .stat { text-align: center; }
-    .stat-n {
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--ff-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--crimson-hi);
+      margin-bottom: 28px;
+    }
+    .hero-eyebrow::before {
+      content: '';
       display: block;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.8rem; font-weight: 700;
-      color: var(--gold-hi); line-height: 1;
-      margin-bottom: 6px;
-    }
-    .stat-l {
-      font-size: 0.68rem; font-weight: 600;
-      letter-spacing: 0.13em; text-transform: uppercase;
-      color: var(--text-muted);
-    }
-    .stat-sep {
-      width: 1px; height: 50px;
-      background: var(--border-2);
+      width: 28px;
+      height: 1px;
+      background: currentColor;
     }
 
-    /* ═══════════════════════════════════════
-       SECTION LAYOUT
-    ═══════════════════════════════════════ */
-    .section       { padding: 104px 0; }
-    .reg-section   { background: var(--bg); }
-    .part-section  { background: var(--bg-2); }
-
-    .sec-head { text-align: center; margin-bottom: 56px; }
-    .sec-tag {
-      display: inline-block;
-      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.18em;
-      text-transform: uppercase; color: var(--gold);
+    .hero-title {
+      font-family: var(--ff-display);
+      font-size: clamp(3.8rem, 7vw, 7rem);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      color: var(--white);
       margin-bottom: 12px;
     }
+    .hero-title em {
+      display: block;
+      font-style: italic;
+      font-weight: 300;
+      color: var(--amber);
+    }
+
+    .hero-year {
+      font-family: var(--ff-display);
+      font-size: clamp(4rem, 8vw, 8rem);
+      font-weight: 700;
+      line-height: 0.9;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.07);
+      letter-spacing: -0.02em;
+      margin-bottom: 32px;
+      user-select: none;
+    }
+
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 400px;
+      margin-bottom: 44px;
+    }
+    .hero-desc strong { color: var(--white); font-weight: 500; }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: var(--crimson);
+      color: #fff;
+      font-family: var(--ff-body);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+    }
+    .btn-primary:hover {
+      background: var(--crimson-hi);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(192,57,43,0.35);
+    }
+    .btn-primary svg { flex-shrink: 0; }
+
+    .btn-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      background: transparent;
+      color: var(--muted);
+      font-family: var(--ff-body);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid var(--border-hi);
+      border-radius: var(--radius);
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    }
+    .btn-outline:hover { border-color: var(--white); color: var(--white); transform: translateY(-2px); }
+
+    /* ═══════════════════════════════════════════
+       STATS STRIP
+    ═══════════════════════════════════════════ */
+    .stats-strip {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stats-row {
+      display: flex;
+      align-items: stretch;
+    }
+
+    .stat-block {
+      flex: 1;
+      padding: 28px 24px;
+      text-align: center;
+      position: relative;
+    }
+    .stat-block + .stat-block::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 20%; bottom: 20%;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .stat-n {
+      display: block;
+      font-family: var(--ff-display);
+      font-size: 2.6rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-family: var(--ff-mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTION SHELL
+    ═══════════════════════════════════════════ */
+    .section {
+      padding: 96px 0;
+    }
+
+    .sec-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--ff-mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+    .sec-label::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: currentColor;
+    }
+
     .sec-title {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.9rem, 4vw, 2.9rem);
-      font-weight: 700; color: var(--text);
-      margin-bottom: 14px; line-height: 1.15;
+      font-family: var(--ff-display);
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 16px;
     }
+
     .sec-desc {
-      font-size: 0.96rem; color: var(--text-soft);
-      max-width: 430px; margin: 0 auto; line-height: 1.72;
+      font-size: 1rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 520px;
     }
 
-    /* ═══════════════════════════════════════
-       REGISTRATION FORM
-    ═══════════════════════════════════════ */
+    /* ═══════════════════════════════════════════
+       REGISTER SECTION
+    ═══════════════════════════════════════════ */
+    .reg-section {
+      background: var(--deep);
+      border-top: 1px solid var(--border);
+    }
+
+    .reg-layout-single {
+      max-width: 580px;
+      margin: 0 auto;
+    }
+
+    /* Form Card */
     .form-card {
-      background: var(--bg-card);
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-top: 2px solid var(--gold-border);
-      border-radius: var(--r-xl);
-      padding: 48px 52px;
-      box-shadow: var(--shadow);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .form-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--crimson), var(--gold));
     }
 
-    .fg            { margin-bottom: 24px; }
-    .fg-row        { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-    .fg-row .fg    { margin-bottom: 24px; }
+    .fg {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 22px;
+    }
+    .fg-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .fg-row .fg { margin-bottom: 0; }
 
     label {
-      display: block;
-      font-size: 0.82rem; font-weight: 600; color: var(--text);
-      margin-bottom: 8px; letter-spacing: 0.01em;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
     }
-    .req { color: var(--gold); }
+    .req { color: var(--crimson-hi); margin-left: 2px; }
 
     input[type="text"],
     select {
       width: 100%;
-      background: var(--bg-elevated);
-      border: 1px solid var(--border-2);
-      border-radius: var(--r);
       padding: 13px 16px;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.93rem; color: var(--text);
+      background: var(--raised);
+      border: 1px solid var(--border-hi);
+      border-radius: var(--radius);
+      color: var(--white);
+      font-family: var(--ff-body);
+      font-size: 0.95rem;
       outline: none;
-      -webkit-appearance: none; appearance: none;
-      transition: border-color var(--t), box-shadow var(--t);
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
     }
-    input::placeholder { color: var(--text-muted); }
-    input:focus,
+    input[type="text"]::placeholder { color: var(--faint); }
+    input[type="text"]:focus,
     select:focus {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 3px rgba(196,144,10,0.15);
+      border-color: var(--crimson);
+      box-shadow: 0 0 0 3px rgba(192,57,43,0.12);
     }
-    input.invalid { border-color: var(--error-tx); }
+    input.invalid { border-color: var(--crimson-hi) !important; }
 
-    /* Select dropdown */
     .sel-wrap { position: relative; }
-    .sel-wrap select { cursor: pointer; padding-right: 42px; }
-    .sel-wrap select option { background: var(--bg-card); color: var(--text); }
+    .sel-wrap select { padding-right: 44px; }
     .sel-chevron {
-      position: absolute; right: 14px; top: 50%;
+      position: absolute;
+      right: 14px;
+      top: 50%;
       transform: translateY(-50%);
-      font-size: 1.15rem; color: var(--text-muted);
-      pointer-events: none; line-height: 1;
+      pointer-events: none;
+      color: var(--faint);
+      font-size: 1.1rem;
     }
+    select option { background: var(--surface); }
 
-    /* Field errors */
     .ferr {
-      display: block;
-      font-size: 0.74rem; color: var(--error-tx);
-      margin-top: 5px; min-height: 18px;
+      font-size: 0.75rem;
+      color: var(--crimson-hi);
+      min-height: 16px;
     }
 
-    /* Spinner */
-    .spin {
-      display: inline-block;
-      width: 17px; height: 17px;
-      border: 2px solid rgba(0,0,0,0.22);
-      border-top-color: #060C18;
-      border-radius: 50%;
-      animation: spinAnim 0.55s linear infinite;
-      flex-shrink: 0;
+    .btn-submit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 15px 24px;
+      background: var(--crimson);
+      color: #fff;
+      font-family: var(--ff-body);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: var(--radius);
+      border: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      margin-top: 8px;
+      cursor: pointer;
     }
-    @keyframes spinAnim { to { transform: rotate(360deg); } }
+    .btn-submit:hover:not(:disabled) {
+      background: var(--crimson-hi);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 28px rgba(192,57,43,0.3);
+    }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
 
-    /* Form status message */
     .form-msg {
-      margin-top: 18px; padding: 14px 18px;
-      border-radius: var(--r);
-      font-size: 0.87rem; font-weight: 500;
-      text-align: center; line-height: 1.5;
+      margin-top: 16px;
+      padding: 13px 16px;
+      border-radius: var(--radius);
+      font-size: 0.88rem;
+      font-weight: 500;
+      line-height: 1.5;
     }
+    .form-msg.hidden { display: none; }
     .form-msg.success {
-      background: var(--success-bg);
-      border: 1px solid var(--success-bd);
-      color: var(--success-tx);
+      background: rgba(39,174,96,0.1);
+      border: 1px solid rgba(39,174,96,0.25);
+      color: #5dca85;
     }
     .form-msg.error {
-      background: var(--error-bg);
-      border: 1px solid var(--error-bd);
-      color: var(--error-tx);
+      background: rgba(192,57,43,0.1);
+      border: 1px solid rgba(192,57,43,0.25);
+      color: var(--crimson-hi);
     }
 
-    /* ═══════════════════════════════════════
-       SECTION FILTER TABS
-    ═══════════════════════════════════════ */
-    .tabs-wrap {
-      display: flex; justify-content: center; flex-wrap: wrap; gap: 8px;
+    .spin {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255,255,255,0.25);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+    .spin.hidden { display: none; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ═══════════════════════════════════════════
+       PARTICIPANTS SECTION
+    ═══════════════════════════════════════════ */
+    .part-section {
+      background: var(--ink);
+      border-top: 1px solid var(--border);
+    }
+
+    .part-head {
+      display: flex;
+      flex-direction: column;
       margin-bottom: 40px;
     }
-    .tab {
-      display: inline-flex; align-items: center; gap: 7px;
-      background: var(--bg-card);
+
+    .tabs-bar {
+      display: flex;
+      gap: 4px;
+      background: var(--surface);
       border: 1px solid var(--border);
-      color: var(--text-muted);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.84rem; font-weight: 500;
-      padding: 9px 20px; border-radius: 50px;
+      border-radius: var(--radius-lg);
+      padding: 5px;
+      width: fit-content;
+      margin-bottom: 40px;
+      flex-wrap: wrap;
+    }
+    .tab {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      transition: background 0.2s, color 0.2s;
+      border: none;
+      background: none;
       cursor: pointer;
-      transition: background var(--t), color var(--t), border-color var(--t);
     }
-    .tab:hover { color: var(--text); border-color: var(--border-2); }
+    .tab:hover { color: var(--white); }
     .tab.active {
-      background: var(--gold);
-      border-color: var(--gold);
-      color: #060C18; font-weight: 700;
-    }
-    .tab.active .tab-badge {
-      background: rgba(0,0,0,0.20);
-      color: #060C18;
+      background: var(--raised);
+      color: var(--white);
     }
     .tab-badge {
-      display: inline-flex; align-items: center; justify-content: center;
-      min-width: 22px; height: 22px;
-      background: var(--bg-elevated);
-      border-radius: 50px; padding: 0 6px;
-      font-size: 0.7rem; font-weight: 700;
-      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 22px;
+      height: 18px;
+      padding: 0 6px;
+      background: rgba(192,57,43,0.2);
+      border-radius: 20px;
+      font-family: var(--ff-mono);
+      font-size: 0.65rem;
+      color: var(--crimson-hi);
+    }
+    .tab.active .tab-badge {
+      background: var(--crimson);
+      color: #fff;
     }
 
-    /* ═══════════════════════════════════════
-       PARTICIPANT GRID
-    ═══════════════════════════════════════ */
     .p-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
     }
 
     .p-card {
-      background: var(--bg-card);
+      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--r-lg);
-      padding: 18px 20px;
-      display: flex; align-items: center; gap: 14px;
-      transition: border-color var(--t), transform var(--t), box-shadow var(--t);
-      animation: fadeUp 0.35s var(--ease) both;
+      border-radius: var(--radius-lg);
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      transition: border-color 0.2s, transform 0.2s;
+      animation: fadeUp 0.4s both ease-out;
     }
     .p-card:hover {
-      border-color: var(--gold-border);
-      transform: translateY(-3px);
-      box-shadow: 0 12px 28px rgba(0,0,0,0.32);
+      border-color: var(--border-hi);
+      transform: translateY(-2px);
     }
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(18px); }
+      from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
     .p-avatar {
-      flex-shrink: 0;
-      width: 44px; height: 44px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
-      background: var(--gold-pale);
-      border: 2px solid var(--gold-border);
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.1rem; font-weight: 700;
-      color: var(--gold-hi);
+      background: linear-gradient(135deg, var(--crimson-lo), var(--crimson));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--ff-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0;
+      letter-spacing: 0.02em;
     }
-    .p-info  { min-width: 0; flex: 1; }
-    .p-name  {
-      font-size: 0.9rem; font-weight: 600; color: var(--text);
-      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+
+    .p-info { flex: 1; min-width: 0; }
+
+    .p-name {
+      font-size: 0.93rem;
+      font-weight: 600;
+      color: var(--white);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
       margin-bottom: 3px;
     }
-    .p-meta  { font-size: 0.74rem; color: var(--text-muted); }
-    .p-tag   {
-      display: inline-block;
-      margin-top: 5px; padding: 2px 9px;
-      background: var(--gold-pale);
-      border: 1px solid var(--gold-border);
-      border-radius: 50px;
-      font-size: 0.68rem; font-weight: 700;
-      color: var(--gold-hi); letter-spacing: 0.04em;
-    }
 
-    /* Loading & empty states */
-    .p-loading, .p-empty {
-      grid-column: 1 / -1;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      gap: 16px; padding: 80px 20px;
-      color: var(--text-muted); text-align: center;
-    }
-    .ring {
-      width: 42px; height: 42px;
-      border: 3px solid var(--border-2);
-      border-top-color: var(--gold);
-      border-radius: 50%;
-      animation: spinAnim 0.8s linear infinite;
-    }
-    .p-empty-icon { font-size: 2.4rem; margin-bottom: 4px; }
-
-    /* ═══════════════════════════════════════
-       FOOTER
-    ═══════════════════════════════════════ */
-    .footer {
-      background: var(--bg);
-      border-top: 1px solid var(--border);
-      padding: 60px 0 44px;
-    }
-    .footer-inner { text-align: center; }
-
-    .footer-brand {
-      display: inline-flex; align-items: center; gap: 14px;
-      margin-bottom: 18px;
-    }
-    .footer-brand-img {
-      width: 52px; height: 52px;
-      border-radius: 50%;
-      object-fit: contain;
-      border: 1.5px solid var(--gold-border);
-      background: var(--bg-card);
-      padding: 5px;
-    }
-    .footer-brand-text {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.7rem; font-weight: 700; font-style: italic;
-      color: var(--gold-hi); letter-spacing: -0.01em;
-    }
-
-    .footer-school {
-      font-size: 0.93rem; font-weight: 600; color: var(--text);
+    .p-meta {
+      font-family: var(--ff-mono);
+      font-size: 0.72rem;
+      color: var(--faint);
       margin-bottom: 6px;
     }
-    .footer-event { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 28px; }
-    .footer-copy  { font-size: 0.72rem; color: var(--text-muted); }
 
-    /* ═══════════════════════════════════════
+    .p-tag {
+      display: inline-block;
+      padding: 2px 9px;
+      border-radius: 4px;
+      background: rgba(201,146,42,0.1);
+      border: 1px solid rgba(201,146,42,0.2);
+      font-family: var(--ff-mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .p-empty, .p-loading {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 64px 24px;
+      color: var(--faint);
+    }
+    .p-empty-icon { font-size: 2.4rem; margin-bottom: 12px; }
+    .p-empty p, .p-loading p { font-size: 0.9rem; }
+
+    .ring {
+      width: 40px;
+      height: 40px;
+      border: 3px solid var(--border);
+      border-top-color: var(--crimson);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 16px;
+    }
+
+    /* ═══════════════════════════════════════════
        RESPONSIVE
-    ═══════════════════════════════════════ */
-    @media (max-width: 768px) {
-      .navbar            { padding: 0 20px; }
-      .nb-links, .nb-cta { display: none; }
-      .nb-hamburger      { display: flex; }
-      .nb-hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
-      .nb-hamburger.open span:nth-child(2) { opacity: 0; }
-      .nb-hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+    ═══════════════════════════════════════════ */
+    @media (max-width: 960px) {
+      .hero { grid-template-columns: 1fr; }
+      .hero::after { display: none; }
 
-      /* Mobile nav dropdown */
-      .mobile-menu {
-        position: fixed; top: 68px; left: 0; right: 0; z-index: 199;
-        background: var(--bg-2);
-        border-bottom: 1px solid var(--border);
-        padding: 24px 20px;
-        display: flex; flex-direction: column; gap: 16px;
+      .hero-left {
+        padding: 60px 40px 40px;
+        justify-content: center;
+        min-height: 50vh;
       }
-      .mobile-menu a {
-        color: var(--text); text-decoration: none;
-        font-size: 1rem; font-weight: 500;
-        padding: 10px 0;
-        border-bottom: 1px solid var(--border);
-      }
+      .hero-logo-wrap { width: min(240px, 60%); }
 
-      .form-card { padding: 30px 24px; }
-      .fg-row    { grid-template-columns: 1fr; }
-      .stat-sep  { display: none; }
-      .stats-row { gap: 20px; }
-      .section   { padding: 76px 0; }
-      .hero-emblem { width: 96px; height: 96px; }
+      .hero-right {
+        padding: 32px 40px 72px;
+        align-items: center;
+        text-align: center;
+      }
+      .hero-eyebrow { justify-content: center; }
+      .hero-desc { text-align: center; max-width: 100%; }
+      .hero-actions { justify-content: center; }
+
+      .stats-row { flex-wrap: wrap; }
+      .stat-block { flex: 1 1 40%; }
     }
 
-    @media (max-width: 480px) {
-      .hero-actions  { flex-direction: column; align-items: center; }
-      .btn-lg        { width: 100%; max-width: 280px; }
-      .tabs-wrap     { gap: 6px; }
-      .tab           { font-size: 0.78rem; padding: 8px 14px; }
-      .nb-brand-name { font-size: 0.88rem; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
+    @media (max-width: 600px) {
+      .section { padding: 64px 0; }
+      .form-card { padding: 28px 20px; }
+      .fg-row { grid-template-columns: 1fr; }
+      .hero-left { padding: 60px 24px 32px; }
+      .hero-right { padding: 24px 24px 56px; }
+      .stat-block { flex: 1 1 45%; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ══════════════════ NAVBAR ══════════════════ -->
-  <nav class="navbar" id="navbar">
+  <!-- ══════════ HERO — SPLIT ══════════ -->
+  <section class="hero">
 
-    <a class="nb-brand" href="#">
-      <img src="bksp-logo.jpg" alt="BKSP Logo" class="nb-logo" />
-      <span class="nb-brand-name">
-        BKSP
-        <span class="nb-brand-sub">Public School &amp; College</span>
-      </span>
-    </a>
-
-    <ul class="nb-links">
-      <li><a href="#register">Register</a></li>
-      <li><a href="#participants">Participants</a></li>
-    </ul>
-    <a href="#register" class="btn btn-gold nb-cta">Register Now</a>
-
-
-
-  </nav>
-
-
-  <!-- ══════════════════ HERO ══════════════════ -->
-  <header class="hero">
-
-    <div class="hero-content">
-
-      <!-- School logo medallion — the visual anchor of the page -->
-      <div class="hero-emblem">
-        <div class="hero-emblem-inner">
-          <img src="bksp-logo.jpg" alt="BKSP Public School &amp; College" />
-        </div>
+    <div class="hero-left">
+      <div class="hero-logo-wrap">
+        <img class="hero-logo-img" src="bksp-logo.jpg" alt="BKSP Public School & College" />
       </div>
+    </div>
 
-      <span class="hero-pill">✦ HSC Batch 2026 &nbsp;·&nbsp; Grand Farewell ✦</span>
-
-      <h1 class="hero-heading">Rag Day</h1>
-
-      <div class="hero-divider">
-        <div class="hero-divider-line"></div>
-        <span class="hero-divider-label">BKSP Public School &amp; College</span>
-        <div class="hero-divider-line"></div>
-      </div>
-
-      <p class="hero-sub">
-        Celebrate the end of an extraordinary chapter.<br />
-        Class of 2026 — The Final Act.
+    <div class="hero-right">
+      <span class="hero-eyebrow">HSC Batch 2026 &nbsp;·&nbsp; Grand Farewell</span>
+      <h1 class="hero-title">
+        Rag<br>
+        <em>Day</em>
+      </h1>
+      <div class="hero-year" aria-hidden="true">2026</div>
+      <p class="hero-desc">
+        Celebrate the end of an extraordinary chapter at<br />
+        <strong>BKSP Public School &amp; College.</strong><br />
+        One final gathering. One unforgettable memory.
       </p>
-
       <div class="hero-actions">
-        <a href="#register"    class="btn btn-gold  btn-lg">Register Now →</a>
-        <a href="#participants" class="btn btn-ghost btn-lg">View Participants</a>
+        <a href="#register" class="btn-primary">
+          Register Now
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+        <a href="#participants" class="btn-outline">View Participants</a>
       </div>
-
     </div>
 
-    <div class="hero-scroll" aria-hidden="true">
-      <span>Scroll</span>
-      <div class="hero-scroll-line"></div>
-    </div>
+  </section>
 
-  </header>
-
-
-  <!-- ══════════════════ STATS STRIP ══════════════════ -->
+  <!-- ══════════ STATS STRIP ══════════ -->
   <div class="stats-strip">
     <div class="container stats-row">
-
-      <div class="stat">
+      <div class="stat-block">
         <span class="stat-n" id="totalCount">—</span>
-        <span class="stat-l">Total Registered</span>
+        <span class="stat-label">Total Registered</span>
       </div>
-      <div class="stat-sep"></div>
-      <div class="stat">
+      <div class="stat-block">
         <span class="stat-n" id="secACount">—</span>
-        <span class="stat-l">Section A</span>
+        <span class="stat-label">Section A</span>
       </div>
-      <div class="stat-sep"></div>
-      <div class="stat">
+      <div class="stat-block">
         <span class="stat-n" id="secBCount">—</span>
-        <span class="stat-l">Section B</span>
+        <span class="stat-label">Section B</span>
       </div>
-      <div class="stat-sep"></div>
-      <div class="stat">
+      <div class="stat-block">
         <span class="stat-n" id="secCCount">—</span>
-        <span class="stat-l">Section C</span>
+        <span class="stat-label">Section C</span>
       </div>
-      <div class="stat-sep"></div>
-      <div class="stat">
+      <div class="stat-block">
         <span class="stat-n" id="secDCount">—</span>
-        <span class="stat-l">Section D</span>
+        <span class="stat-label">Section D</span>
       </div>
-
     </div>
   </div>
 
-
-  <!-- ══════════════════ REGISTRATION ══════════════════ -->
+  <!-- ══════════ REGISTER ══════════ -->
   <section id="register" class="section reg-section">
-    <div class="container narrow">
+    <div class="container">
+      <div class="reg-layout-single">
 
-      <div class="sec-head">
-        <span class="sec-tag">Join the Celebration</span>
-        <h2 class="sec-title">Register for HSC 26 Rag Day</h2>
-        <p class="sec-desc">
-          Secure your spot at BKSP's grandest farewell.
-          Fill in your details below — it only takes a moment.
-        </p>
-      </div>
+        <div class="form-card">
+          <form id="regForm" novalidate>
 
-      <div class="form-card">
-        <form id="regForm" novalidate>
-
-          <div class="fg">
-            <label for="fullName">Full Name <span class="req">*</span></label>
-            <input type="text" id="fullName" name="fullName"
-                   placeholder="e.g. Rafsan Ahmed" autocomplete="name" />
-            <span class="ferr" id="nameErr"></span>
-          </div>
-
-          <div class="fg-row">
             <div class="fg">
-              <label for="serial">Serial Number <span class="req">*</span></label>
-              <input type="text" id="serial" name="serial" placeholder="e.g. 42" />
-              <span class="ferr" id="serialErr"></span>
+              <label for="fullName">Full Name <span class="req">*</span></label>
+              <input type="text" id="fullName" name="fullName"
+                     placeholder="e.g. Rafsan Ahmed" autocomplete="name" />
+              <span class="ferr" id="nameErr"></span>
             </div>
-            <div class="fg">
-              <label for="section">Section <span class="req">*</span></label>
-              <div class="sel-wrap">
-                <select id="section" name="section">
-                  <option value="" disabled selected>Select Section</option>
-                  <option value="A">Section A</option>
-                  <option value="B">Section B</option>
-                  <option value="C">Section C</option>
-                  <option value="D">Section D</option>
-                </select>
-                <span class="sel-chevron" aria-hidden="true">&#8964;</span>
+
+            <div class="fg-row">
+              <div class="fg">
+                <label for="serial">Serial Number <span class="req">*</span></label>
+                <input type="text" id="serial" name="serial" placeholder="e.g. 42" />
+                <span class="ferr" id="serialErr"></span>
               </div>
-              <span class="ferr" id="sectionErr"></span>
+              <div class="fg">
+                <label for="section">Section <span class="req">*</span></label>
+                <div class="sel-wrap">
+                  <select id="section" name="section">
+                    <option value="" disabled selected>Select Section</option>
+                    <option value="A">Section A</option>
+                    <option value="B">Section B</option>
+                    <option value="C">Section C</option>
+                    <option value="D">Section D</option>
+                  </select>
+                  <span class="sel-chevron" aria-hidden="true">&#8964;</span>
+                </div>
+                <span class="ferr" id="sectionErr"></span>
+              </div>
             </div>
-          </div>
 
-          <button type="submit" class="btn btn-gold btn-block" id="submitBtn">
-            <span id="btnLabel">Complete Registration</span>
-            <span id="btnSpin" class="spin hidden" aria-hidden="true"></span>
-          </button>
+            <button type="submit" class="btn-submit" id="submitBtn">
+              <span id="btnLabel">Complete Registration</span>
+              <span id="btnSpin" class="spin hidden" aria-hidden="true"></span>
+            </button>
 
-        </form>
-        <div id="formMsg" class="form-msg hidden" role="alert"></div>
-      </div>
+          </form>
+          <div id="formMsg" class="form-msg hidden" role="alert"></div>
+        </div>
 
+      </div><!-- /.reg-layout-single -->
     </div>
   </section>
 
-
-  <!-- ══════════════════ PARTICIPANTS ══════════════════ -->
+  <!-- ══════════ PARTICIPANTS ══════════ -->
   <section id="participants" class="section part-section">
     <div class="container">
 
-      <div class="sec-head">
-        <span class="sec-tag">Class of 2026</span>
+      <div class="part-head">
+        <span class="sec-label">Class of 2026</span>
         <h2 class="sec-title">Registered Participants</h2>
-        <p class="sec-desc">
-          Students confirmed for Rag Day 2026. Browse by section below.
-        </p>
+        <p class="sec-desc">Students confirmed for Rag Day 2026. Filter by section below.</p>
       </div>
 
-      <!-- Section filter tabs -->
-      <div class="tabs-wrap" role="tablist" aria-label="Filter by section">
+      <div class="tabs-bar" role="tablist" aria-label="Filter by section">
         <button class="tab active" data-f="All" role="tab" aria-selected="true">
           All <span class="tab-badge" id="tabAll">0</span>
         </button>
@@ -881,7 +864,6 @@
         </button>
       </div>
 
-      <!-- Participant grid -->
       <div id="pGrid" class="p-grid" role="tabpanel">
         <div class="p-loading">
           <div class="ring"></div>
@@ -892,23 +874,7 @@
     </div>
   </section>
 
-
-  <!-- ══════════════════ FOOTER ══════════════════ -->
-  <footer class="footer">
-    <div class="container footer-inner">
-
-      <div class="footer-brand">
-        <img src="bksp-logo.jpg" alt="BKSP Logo" class="footer-brand-img" />
-        <span class="footer-brand-text">BKSP</span>
-      </div>
-
-      <p class="footer-school">BKSP Public School &amp; College</p>
-      <p class="footer-event">HSC Batch 2026 &nbsp;·&nbsp; Rag Day Celebration</p>
-      <p class="footer-copy">© 2026 All Rights Reserved</p>
-
-    </div>
-  </footer>
-
   <script src="app.js"></script>
+
 </body>
 </html>
