@@ -137,29 +137,10 @@
       padding: 80px 60px 80px 40px;
       position: relative;
     }
-    .hero-left::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse at center, rgba(192,57,43,0.06) 0%, transparent 70%);
-      pointer-events: none;
-    }
 
     .hero-logo-wrap {
       position: relative;
-      width: min(380px, 90%);
-    }
-    .hero-logo-wrap::before {
-      content: '';
-      position: absolute;
-      inset: -32px;
-      border-radius: 50%;
-      background: radial-gradient(ellipse at center, rgba(201,146,42,0.07) 0%, transparent 70%);
-      animation: pulse-glow 4s ease-in-out infinite;
-    }
-    @keyframes pulse-glow {
-      0%, 100% { opacity: 0.5; transform: scale(0.95); }
-      50%       { opacity: 1;   transform: scale(1.05); }
+      width: min(190px, 48%);
     }
 
     .hero-logo-img {
@@ -167,7 +148,6 @@
       height: auto;
       position: relative;
       z-index: 1;
-      filter: drop-shadow(0 0 48px rgba(192,57,43,0.22)) drop-shadow(0 0 80px rgba(201,146,42,0.12));
     }
 
     /* Right panel — Copy */
@@ -699,7 +679,7 @@
         justify-content: center;
         min-height: 50vh;
       }
-      .hero-logo-wrap { width: min(240px, 60%); }
+      .hero-logo-wrap { width: min(120px, 40%); }
 
       .hero-right {
         padding: 32px 40px 72px;
